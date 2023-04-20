@@ -1,0 +1,220 @@
+* {
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --card-width: 325px;
+    --card-height: 605px;
+    --card-radius: 15px;
+    --seperator-height: 500px;
+    --bg: #F0EFEF;
+    --wall-bg: #FFCA1B;
+    --table-bg: #EEB90A;
+    --font-color: #242323;
+    --transition: transform 0.7s ease-in-out;
+}
+
+/* Container with book cards inside */
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg);
+}
+
+.title {
+    color: #FFFEFF;
+}
+
+/* Individual Book Card container */
+.book-card {
+    width: var(--card-width);
+    height: var(--card-height);
+    margin: 30px 30px;
+    border-radius: var(--card-radius);
+    perspective: 500px;
+    overflow: hidden;
+    color: var(--font-color);
+    background-color: var(--wall-bg);
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+#book-sm {
+    background-color: #33A1FD;
+}
+
+#book-lg {
+    background-color: #C42847;
+}
+
+.book-card .card-nav {
+    position: fixed;
+    top: 5px;
+    width: 100%;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    z-index: 6;
+}
+
+.book-card .actions {
+    position: fixed;
+    top: 37px;
+    width: 100%;
+    padding: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    z-index: 6;
+}
+
+/* === Container with the book inside === */
+.book-card .book {
+    position: relative;
+    height: 490px;
+    width: calc(var(--card-width) * 2);
+    left: -52.5%;
+    border-top-left-radius: var(--card-radius);
+    border-top-right-radius: var(--card-radius);
+    background-color: var(--table-bg);
+    transform-style: preserve-3d;
+    transform-origin: 50% 40%;
+    transition: var(--transition);
+    z-index: 4;
+}
+
+.book-card #book-lg-1 {
+    background-color: #B31736;
+}
+
+.book-card #book-sm-1 {
+    background-color: #2290EC;
+}
+
+/* --- Properties of the cover of the book --- */
+
+.book-card .book-cover-lg {
+    width: 170px;
+    position: absolute;
+    top: 180px;
+    left: 250px;
+    z-index: 5;
+    /* Changes the height of the cover when the book is laying down */
+    transform: translateZ(53.4px);
+}
+
+.book-card .book-side-lg {
+    position: absolute;
+    /* How far down the bottom of the book is from the top when the book cover is showing */
+    top: 429.3px;
+    /* How long the bottom of the book is */
+    width: 171.8px;
+    /* How far left the bottom of the book is from the edge of the container */
+    left: 248.9px;
+    transform: translateY(-15px) translateX(0px) translateZ(27px) rotateX(104deg);
+}
+
+.book-card .book-cover-md {
+    width: 170px;
+    position: absolute;
+    top: 180px;
+    left: 250px;
+    z-index: 5;
+    /* Changes the height of the cover when the book is laying down */
+    transform: translateZ(30px);
+}
+
+/* --- Properties of the bottom side of the book --- */
+
+.book-card .book-side-md {
+    position: absolute;
+    /* How far down the bottom of the book is from the top when the book cover is showing */
+    top: 438.49px;
+    /* How long the bottom of the book is */
+    width: 170px;
+    /* How far left the bottom of the book is from the edge of the container */
+    left: 250px;
+    transform: translateY(-15px) translateX(0px) translateZ(15px) rotateX(104deg);
+}
+
+.book-card .book-cover-sm {
+    width: 170px;
+    position: absolute;
+    top: 180px;
+    left: 250px;
+    z-index: 5;
+    /* Changes the height of the cover when the book is laying down */
+    transform: translateZ(15.2px);
+}
+
+.book-card .book-side-sm {
+    position: absolute;
+    /* How far down the bottom of the book is from the top when the book cover is showing */
+    top: 444.4px;
+    /* How long the bottom of the book is */
+    width: 171px;
+    height: 15px;
+    /* How far left the bottom of the book is from the edge of the container */
+    left: 249.4px;
+    transform: translateY(-15px) translateX(0px) translateZ(7.8px) rotateX(104deg);
+}
+
+.book-card:hover .book {
+    transform: rotateX(75deg) translateZ(3px) scale(0.75);
+}
+
+.book-card:hover .book + .details {
+    transform: translateY(-302px);
+}
+
+.book-card:hover .book + .details .detail-icon {
+    transform: rotateX(180deg);
+}
+
+.book-card .details {
+    height: var(--seperator-height);
+    padding: 45px;
+    transition: var(--transition);
+    background: white;
+    justify-content: center;
+}
+
+.book-card .details .detail-header {
+    display: flex;
+    align-items: center;
+}
+
+.book-card .details .detail-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.book-card .details .detail-icon {
+    transform-origin: top;
+    transition: var(--transition);
+}
+
+.book-card .details .detail-body {
+    font-family: 'Quicksand', sans-serif;
+    transition: 0.7s;
+    opacity: 0;
+}
+
+.book-card:hover .details .detail-body {
+    font-family: 'Quicksand', sans-serif;
+    opacity: 1;
+}
+
+.book-card .details .detail-body p:first-child {
+    margin-bottom: 15px;
+}
